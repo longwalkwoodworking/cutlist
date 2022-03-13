@@ -1,0 +1,27 @@
+.debug {
+	stroke: red;
+	stroke-width: 0.02in;
+	fill: none;
+}
+
+.l {
+	stroke: black;
+	stroke-width: 0.01in;
+}
+
+.label, .title-label, .title-content {
+	font-family: "arial";
+	font-size: 0.188in;
+}
+
+.title-label {
+	text-anchor: right;
+}
+
+.title-label, .title-content {
+	transform: rotate(-90deg);
+}
+
+.title-content{
+	white-space: pre;
+}

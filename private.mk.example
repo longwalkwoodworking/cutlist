@@ -1,0 +1,7 @@
+CUTLIST_ARGS += --drawn-by "YOUR NAME HERE"
+CUTLIST_ARGS += --address "FIRST LINE OF YOUR ADDRESS"
+CUTLIST_ARGS += --address "SECOND LINE OF YOUR ADDRESS"
+CUTLIST_ARGS += --phone "YOUR PHONE NUMBER"
+CUTLIST_ARGS += --email "YOUR EMAIL ADDRESS"
+# ledger and a3 are supported
+CUTLIST_ARGS += --paper ledger
