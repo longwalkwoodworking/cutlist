@@ -55,7 +55,7 @@ Browsers and CorelDraw seem to understand external stylesheets. Other svg render
 
 ## License
 
-The code in this repository is licensed under the terms of [WTFPL](http://wtfpl.net). This code is of no commercial value to me. I build [furniture](https://longwalkwoodworking.com); I don't make tools to sell.
+The code in this repository is licensed under the terms of [WTFPL](http://wtfpl.net). This code is of no commercial value to me. I build [furniture](https://longwalkwoodworking.com).
 
 ## Q/A
 
