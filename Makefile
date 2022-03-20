@@ -1,21 +1,23 @@
 include private.mk
 
 .PHONY: all
-all: cutlist.pdf
+all: cutlist.svg
 
-.PHONY: blank
-blank: CUTLIST_ARGS :=
-blank: cutlist.pdf
+.PHONY: blanks
+blanks: blank-ledger.svg blank-a3.svg
 
-cutlist.pdf: cutlist.svg
-	convert $< $@
+blank-ledger.svg: CUTLIST_ARGS :=
+blank-ledger.svg: cutlist.svg
 
-cutlist.svg: cutlist.py style.css Makefile private.mk
-	python3 $< $(CUTLIST_ARGS)
+blank-a3.svg: CUTLIST_ARGS := --paper=a3
+blank-a3.svg: cutlist.svg
+
+%.svg: cutlist.py style.css Makefile private.mk
+	python3 $< $(CUTLIST_ARGS) $@
 
 .PHONY: debug
 debug: CUTLIST_ARGS += --debug
-debug: cutlist.pdf
+debug: cutlist.svg
 
 .PHONY: clean
 clean:
