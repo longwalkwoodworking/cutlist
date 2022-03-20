@@ -1,4 +1,6 @@
 import argparse
+import sys
+
 from svgwrite import drawing
 from svgwrite import inch
 from svgwrite import mm
@@ -10,6 +12,8 @@ HEIGHT = 11
 MARGIN = .75
 ROW_HEIGHT = .25
 TEXT_HEIGHT = 0.188
+
+STYLESHEET = "style.css"
 
 PAPERS = {
         'ledger': (17, 11, inch),
@@ -170,8 +174,6 @@ MAIN_COLUMNS = [
         ]
 
 def title_block(d, rows):
-    print(WIDTH)
-    print(HEIGHT)
     x0 = WIDTH - MARGIN
     x = WIDTH - MARGIN
     y1 = (HEIGHT - TITLE_ROW_WIDTH) / 2
@@ -316,6 +318,9 @@ def main ():
     parser.add_argument("--debug", action="store_true")
     parser.add_argument("--paper", action="store", default="ledger",
             choices=PAPERS.keys())
+    parser.add_argument('--link-style', action='store_true')
+    parser.add_argument('filename', nargs='?')
+
     for title_row in TITLE_ROWS:
         title_row.add_argument(parser)
 
@@ -325,6 +330,9 @@ def main ():
     for title_row in TITLE_ROWS:
         title_row.add_line(title_rows, vars(args))
 
+    link_style = args.link_style
+    filename = args.filename
+
     global DEBUG
     DEBUG = args.debug
 
@@ -332,7 +340,14 @@ def main ():
 
     d = drawing.Drawing("cutlist.svg", (paper_width * paper_unit,
         paper_height * paper_unit))
-    d.add_stylesheet("./style.css", "")
+
+    # External stylesheet support is sort of iffy. Browsers seem to be OK with
+    # it, CorelDraw seems to be OK with it, other renderers not so much.
+    if link_style:
+        d.add_stylesheet(STYLESHEET, "asdf")
+    else:
+        with open(STYLESHEET, 'r') as style:
+            d.embed_stylesheet(style.read())
 
     global WIDTH
     global HEIGHT
@@ -357,7 +372,11 @@ def main ():
 
     main_block(d, main_max_x)
 
-    d.save(pretty=True)
+    if filename is not None:
+        with open(filename, 'w', encoding='utf-8') as output:
+            d.write(output, pretty=True)
+    else:
+        d.write(sys.stdout, pretty=True)
 
 if __name__ == "__main__":
     main()
