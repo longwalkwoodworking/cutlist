@@ -1,7 +1,26 @@
+# Remove the `#' at the start of the following line to customize the project
+# name in the cutlist template.
+# CUTLIST_ARGS += --project "NAME OF PROJECT"
+
 CUTLIST_ARGS += --drawn-by "YOUR NAME HERE"
+
+# You may include as many or as few address lines as you like. If it's too
+# many, it's going to screw things up in the main block, but 3 or 4 shouldn't
+# be a problem.
 CUTLIST_ARGS += --address "FIRST LINE OF YOUR ADDRESS"
 CUTLIST_ARGS += --address "SECOND LINE OF YOUR ADDRESS"
+
 CUTLIST_ARGS += --phone "YOUR PHONE NUMBER"
 CUTLIST_ARGS += --email "YOUR EMAIL ADDRESS"
+
+# If this is one of many drawings (very likely), you can customize that too
+# --drawing 2 will result in the line DRAWING 2 OF 2 in the title block
+# --drawing 2,3 will result in the line DRAWING 2 OF 3 in the title block
+# You can change the numbers to suit your situation.
+# Remove the `#' from *one* of the following lines to customize the drawing
+# line in the cutlist template.
+# CUTLIST_ARGS += --drawing "2"
+# CUTLIST_ARGS += --drawing "2,3"
+
 # ledger and a3 are supported
 CUTLIST_ARGS += --paper ledger

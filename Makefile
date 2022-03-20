@@ -15,10 +15,8 @@ all: cutlist.svg
 blanks: blank-ledger.svg blank-a3.svg
 
 blank-ledger.svg: CUTLIST_ARGS :=
-blank-ledger.svg: cutlist.svg
 
 blank-a3.svg: CUTLIST_ARGS := --paper=a3
-blank-a3.svg: cutlist.svg
 
 %.svg: cutlist.py style.css Makefile private.mk
 	python3 $< $(CUTLIST_ARGS) $@
@@ -30,3 +28,9 @@ debug: cutlist.svg
 .PHONY: clean
 clean:
 	git clean -dfx -e private.mk
+
+# IMPORTANT: DO NOT list private.mk.example as a prequisite of private.mk
+# If private.mk.example is updated in the future, this will blow away the
+# user's private.mk file, which likely has their customizations in it.
+private.mk:
+	cp private.mk.example private.mk

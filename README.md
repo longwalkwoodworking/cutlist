@@ -33,6 +33,10 @@ Download the blank .svg file of your choosing, and edit the title block content 
 
 This is obviously a pain in the ass and requires some knowledge of how svg and xml work. You also won't be able to (easily) change the number of rows in the address, for instance.
 
+## Customizing a cut list template
+
+The first time you run `make`, `make` will create a `private.mk` file for you. Edit the `private.mk` file, customizing it as you see fit, and re-run `make`. [private.mk.example](private.mk.example) includes information about what can be customized.
+
 ## Using this code
 
 ### Python version
